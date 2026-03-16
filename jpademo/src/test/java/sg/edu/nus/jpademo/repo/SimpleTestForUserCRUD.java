@@ -27,7 +27,7 @@ public class SimpleTestForUserCRUD {
 	@Test
 	@DisplayName("Test User Creation")
 	void saveUser() {
-		User u1 = new User("Marry Jane", "1234", "ahbeng@nus.edu.sg", "Marry", "Jane", LocalDate.of(1995, 5, 20), null);
+		User u1 = new User("Marry Jane", "ahbeng@nus.edu.sg", "1234", "Marry", "Jane", LocalDate.of(1995, 5, 20));
 		User savedUser = userRepo.save(u1);
 		em.persistAndFlush(savedUser);
 		assertThat(savedUser.getId()).isNotNegative().isNotNull();
@@ -37,7 +37,7 @@ public class SimpleTestForUserCRUD {
     @DisplayName("Test User Creation")
     void findUser() {
 		 List<User> list = userRepo.findAll();
-		 assertThat(list.size()).isNotNull();
+		 assertThat(list.size()>0);
     }
 	
 	@Test

@@ -3,8 +3,8 @@ package sg.edu.nus.jpademo.controller;
 import java.time.LocalDate;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import sg.edu.nus.jpademo.model.Category;
@@ -27,7 +27,8 @@ public class DummyController {
 	UserRepository uRepo;
 
 	@GetMapping("/test")
-	public String getMethodname(@RequestParam(required = false) String param) {
+	public String getMethodName(Model m) {
+	//public String getMethodname(@RequestParam(required = false) String param) {
 		System.out.println("Controller executed...");
 		
 		Category c1 = new Category("Kitchen Knives", "Simple Home Knives");
@@ -46,9 +47,10 @@ public class DummyController {
 		tRepo.save(t3);
 		tRepo.save(t4);
 
-		User u1 = new User("Marry Jane", "1234", "ahbeng@nus.edu.sg", "Marry", "Jane", LocalDate.of(1995, 5, 20), null);
+		User u1 = new User("Marry Jane", "ahbeng@nus.edu.sg", "1234", "Marry", "Jane", LocalDate.of(1995, 5, 20));
 		uRepo.save(u1);
-		return "Controller works...";
+		m.addAttribute("message", "allok");
+		return new String("Controller works...");
 	}
 
 }
